@@ -115,8 +115,8 @@
      */
     simplyCountdown = function (elt, args) {
         var parameters = extend({
-                year: 2021,
-                month: 11,
+                year: 2022,
+                month: 12,
                 day: 21,
                 hours: 0,
                 minutes: 0,
@@ -161,8 +161,10 @@
             parameters.minutes,
             parameters.seconds
         );
+		//alert('targetTmpDate'+targetTmpDate);
 
         if (parameters.enableUtc) {
+			//alert("Inside If");
             targetDate = new Date(
                 targetTmpDate.getUTCFullYear(),
                 targetTmpDate.getUTCMonth(),
@@ -172,8 +174,10 @@
                 targetTmpDate.getUTCSeconds()
             );
         } else {
+			//alert("Inside Else");
             targetDate = targetTmpDate;
         }
+		//alert('targetDate'+targetDate);
 
         Array.prototype.forEach.call(cd, function (countdown) {
             var fullCountDown = createElements(parameters, countdown),
@@ -186,10 +190,14 @@
                     secondWord;
 
                 now = new Date();
+				//alert(now);
                 if (parameters.enableUtc) {
                     nowUtc = new Date(now.getFullYear(), now.getMonth(), now.getDate(),
                         now.getHours(), now.getMinutes(), now.getSeconds());
+						//alert('targetDate'+targetDate);
+						//alert('nowUTC'+nowUtc.getTime());
                     secondsLeft = (targetDate - nowUtc.getTime()) / 1000;
+						//alert(secondsLeft);
 
                 } else {
                     secondsLeft = (targetDate - now.getTime()) / 1000;
@@ -197,6 +205,7 @@
 
                 if (secondsLeft > 0) {
                     days = parseInt(secondsLeft / 86400, 10);
+					//alert(days);
                     secondsLeft = secondsLeft % 86400;
 
                     hours = parseInt(secondsLeft / 3600, 10);
